@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UsuarioService, Credenciales } from '../services/usuario.service';
 
 @Component({
   selector: 'app-home',
@@ -6,7 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  user: Credenciales = {};
 
-  constructor() {}
-
+  constructor(private usuarioService: UsuarioService) {
+    console.log(usuarioService.usuario);
+    this.user = this.usuarioService.usuario;
+  }
 }
