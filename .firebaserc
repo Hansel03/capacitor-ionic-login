@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "tracker-taxis-17eb4": {
+      "hosting": {
+        "app": [
+          "tracker-taxis-17eb4"
+        ]
+      }
+    }
+  }
+}
