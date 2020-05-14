@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 export interface Credenciales {
   nombre?: string;
@@ -14,7 +16,7 @@ export interface Credenciales {
 export class UsuarioService {
   usuario: Credenciales = {};
 
-  constructor() {}
+  constructor(private router: Router, private httpClient: HttpClient) {}
 
   cargarUsuario(
     nombre: string,
@@ -28,5 +30,26 @@ export class UsuarioService {
     this.usuario.imagen = imagen;
     this.usuario.uid = uid;
     this.usuario.provider = provider;
+    this.router.navigate(['home']);
+  }
+
+  getFacebookUserDataAndroid(accessToken) {
+    const endpoint = `https://graph.facebook.com/me?fields=name,email,picture.width(400).height(400)&access_token=${accessToken}`;
+
+    this.httpClient
+      .get(endpoint)
+      .toPromise()
+      .then((result: any) => {
+        this.cargarUsuario(
+          result.name,
+          result.email,
+          result.picture.data.url,
+          result.id,
+          'facebook'
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 }
