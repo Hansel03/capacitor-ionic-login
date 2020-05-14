@@ -26,8 +26,18 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>capacitor</string>
+				<string>fb936420900117572</string>
 			</array>
 		</dict>
+	</array>
+	<key>FacebookAppID</key>
+	<string>936420900117572</string>
+	<key>FacebookDisplayName</key>
+	<string>Wimlov</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fbauth2</string>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
