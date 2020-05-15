@@ -1,13 +1,18 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "loginApp",
-  "bundledWebRuntime": false,
-  "npmClient": "npm",
-  "webDir": "www",
-  "plugins": {
-    "SplashScreen": {
-      "launchShowDuration": 0
-    }
-  },
-  "cordova": {}
+    "appId": "io.ionic.starter",
+    "appName": "loginApp",
+    "bundledWebRuntime": false,
+    "npmClient": "npm",
+    "webDir": "www",
+    "plugins": {
+        "SplashScreen": {
+            "launchShowDuration": 0
+        },
+        "GoogleAuth": {
+            "scopes": ["profile", "email"],
+            "serverClientId": "345837688382-b9mpvkk7l0icthk5krbe3uilipg2m1bp.apps.googleusercontent.com",
+            "forceCodeForRefreshToken": true
+        }
+    },
+    "cordova": {}
 }
