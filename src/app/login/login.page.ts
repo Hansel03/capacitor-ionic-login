@@ -98,7 +98,7 @@ export class LoginPage implements OnInit {
           user.email,
           user.photoURL,
           user.uid,
-          'facebook'
+          'google'
         );
       });
   }
