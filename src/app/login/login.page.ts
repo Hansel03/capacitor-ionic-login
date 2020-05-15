@@ -5,6 +5,7 @@ import { UsuarioService } from '../services/usuario.service';
 import { Plugins } from '@capacitor/core';
 import { FacebookLoginResponse } from '@rdlabo/capacitor-facebook-login';
 import { Platform } from '@ionic/angular';
+import '@codetrix-studio/capacitor-google-auth';
 
 @Component({
   selector: 'app-login',
@@ -81,5 +82,24 @@ export class LoginPage implements OnInit {
           }
         );
     }
+  }
+
+  async googleSignIn() {
+    const googleUser = await Plugins.GoogleAuth.signIn();
+    const credential = firebase.auth.GoogleAuthProvider.credential(
+      googleUser.authentication.idToken
+    );
+    this.afAuth.auth
+      .signInAndRetrieveDataWithCredential(credential)
+      .then((res) => {
+        const user = res.user;
+        this.usuarioService.cargarUsuario(
+          user.displayName,
+          user.email,
+          user.photoURL,
+          user.uid,
+          'facebook'
+        );
+      });
   }
 }
