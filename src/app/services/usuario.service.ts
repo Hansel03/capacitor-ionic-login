@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Plugins } from '@capacitor/core';
+const { FacebookLogin } = Plugins;
 
 export interface Credenciales {
   nombre?: string;
@@ -16,7 +19,11 @@ export interface Credenciales {
 export class UsuarioService {
   usuario: Credenciales = {};
 
-  constructor(private router: Router, private httpClient: HttpClient) {}
+  constructor(
+    private router: Router,
+    private httpClient: HttpClient,
+    private afAuth: AngularFireAuth
+  ) {}
 
   cargarUsuario(
     nombre: string,
@@ -57,5 +64,15 @@ export class UsuarioService {
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  async logoutFireBase() {
+    //hacemos logout de firebase
+    await this.afAuth.auth.signOut().then(() => {
+      // hacemos logout de facebok
+      FacebookLogin.logout().then(() => {
+        this.router.navigate(['login']);
+      });
+    });
   }
 }

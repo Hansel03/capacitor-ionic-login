@@ -13,4 +13,8 @@ export class HomePage {
     console.log(usuarioService.usuario);
     this.user = this.usuarioService.usuario;
   }
+
+  logout() {
+    this.usuarioService.logoutFireBase();
+  }
 }
