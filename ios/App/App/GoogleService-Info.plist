@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>345837688382-fvhva6jc2157dp776a2bq1e5dn6nmh55.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.345837688382-fvhva6jc2157dp776a2bq1e5dn6nmh55</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>345837688382-1tj6ffv20d80pd7rkmeh6enbnhdv2obv.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCWI5HjqtQXFRr9zmaZ8tjdhCRl7ua-4V8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>345837688382</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>io.ionic.starter</string>
+	<key>PROJECT_ID</key>
+	<string>tracker-taxis-17eb4</string>
+	<key>STORAGE_BUCKET</key>
+	<string>tracker-taxis-17eb4.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:345837688382:ios:5d2edc65af61853f0ee36f</string>
+	<key>DATABASE_URL</key>
+	<string>https://tracker-taxis-17eb4.firebaseio.com</string>
+</dict>
+</plist>
