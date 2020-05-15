@@ -33,6 +33,12 @@ export class UsuarioService {
     this.router.navigate(['home']);
   }
 
+  /**
+   * Servicoo para consultar los datos personas de un usuario de facebook con el token
+   *
+   * @param {*} accessToken
+   * @memberof UsuarioService
+   */
   getFacebookUserDataAndroid(accessToken) {
     const endpoint = `https://graph.facebook.com/me?fields=name,email,picture.width(400).height(400)&access_token=${accessToken}`;
 

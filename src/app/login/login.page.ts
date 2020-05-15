@@ -29,18 +29,32 @@ export class LoginPage implements OnInit {
         'user_photos',
         'user_gender',
       ];
-      const result = await FacebookLogin.login({
+      const result: FacebookLoginResponse = await FacebookLogin.login({
         permissions: FACEBOOK_PERMISSIONS,
       });
 
       if (result.accessToken) {
         // Login successful.
-        console.log('entro');
-        console.log(JSON.stringify(result));
-        this.usuarioService.getFacebookUserDataAndroid(
-          result.accessToken.token
-        );
-        console.log(`Facebook access token is ${result.accessToken.token}`);
+
+        this.afAuth.auth
+          .signInWithCredential(
+            firebase.auth.FacebookAuthProvider.credential(
+              result.accessToken.token
+            )
+          )
+          .then((res) => {
+            console.log('facebook login');
+            console.log(JSON.stringify(res));
+            const user = res.user;
+            this.usuarioService.cargarUsuario(
+              user.displayName,
+              user.email,
+              user.photoURL,
+              user.uid,
+              'facebook'
+            );
+          });
+        console.log(`Facebook access token is ${result.accessToken}`);
       } else {
         // Cancelled by user.
         console.log('no entro');
