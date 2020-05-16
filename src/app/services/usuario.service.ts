@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, CanActivate } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { Plugins } from '@capacitor/core';
-const { FacebookLogin } = Plugins;
 
 export interface Credenciales {
   nombre?: string;
@@ -16,7 +14,7 @@ export interface Credenciales {
 @Injectable({
   providedIn: 'root',
 })
-export class UsuarioService {
+export class UsuarioService implements CanActivate {
   usuario: Credenciales = {};
 
   constructor(
@@ -67,12 +65,34 @@ export class UsuarioService {
   }
 
   async logoutFireBase() {
-    //hacemos logout de firebase
-    await this.afAuth.auth.signOut().then(() => {
-      // hacemos logout de facebok
-      FacebookLogin.logout().then(() => {
+    // hacemos logout de firebase
+    await this.afAuth.auth
+      .signOut()
+      .then(() => {
+        // limpiamos el usuario
+        this.usuario = {};
         this.router.navigate(['login']);
+      })
+      .catch((err) => {
+        console.log('exploto' + JSON.stringify(err));
       });
+  }
+
+  canActivate() {
+    // verificamos que el usuario este autenticado en firebase
+    this.afAuth.authState.subscribe((user) => {
+      if (user) {
+        this.usuario.nombre = user.displayName;
+        this.usuario.email = user.email;
+        this.usuario.imagen = user.photoURL;
+        this.usuario.uid = user.uid;
+        this.usuario.provider = user.providerId;
+        // logged in so return true
+        this.router.navigate(['home']);
+        return false;
+      }
     });
+    // not logged in so redirect to login page
+    return true;
   }
 }
